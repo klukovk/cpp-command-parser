@@ -1,9 +1,16 @@
 
 #include "Parser.hpp"
 #include <sstream>
+#include <stdexcept>
 #include <string>
 
 using namespace std;
+
+
+class PlayerException : public std::runtime_error {
+    public:
+        PlayerException(const std::string &msg) : std::runtime_error(msg) {}
+};
 
 class Player {
     private:
@@ -13,7 +20,10 @@ class Player {
         Player(int totalPoints) : points(totalPoints) {}
 
         void removePoints(int p) {
-            points = points - p;
+            if (p > 0)
+                points = points - p;
+            else
+                throw PlayerException("Cant Remove Negative Points");
         }
 
         int getPoints() {
@@ -33,7 +43,17 @@ class GameParser : public Parser<Player> {
                     string token;
 
                     if (args >> token) {
-                        this->getTarget()->removePoints(stoi(token));
+                        try {
+                            totalPoints = stoi(token);
+                            this->getTarget()->removePoints(totalPoints);
+                        }
+                        catch (invalid_argument &e) {
+                            throw ParserException("Specified Points not valid as Integer");
+                        }
+                        catch (PlayerException &e) {
+                            throw ParserException(e.what());
+                        }
+
                     }
                     else {
                         this->getTarget()->removePoints(0);
@@ -68,7 +88,7 @@ int main() {
     bool quit;
 
     do {
-        cout << "Input: \n";
+        cout << "\nInput: \n";
 
         // Leggi Intero Nome digitato
         getline(cin, input);

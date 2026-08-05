@@ -1,4 +1,5 @@
 
+#include <stdexcept>
 #include <unordered_map>
 #include <string>
 #include <sstream>
@@ -8,6 +9,11 @@
 
 using CommandName = std::string;
 using CommandMethod = std::function<void(std::stringstream& args)>;
+
+class ParserException : public std::runtime_error {
+    public:
+        ParserException(const std::string &arg) : std::runtime_error(arg) {}
+};
 
 
 template <class T>
@@ -25,12 +31,25 @@ class Parser {
 
             input_stream >> command;
 
+            std::cout << "\n";
             if (!(command == "quit"))
             {
                 auto func = commandMap.find(command);
 
                 if (func != commandMap.end())
-                    func->second(input_stream);
+                {
+                    try {
+                        func->second(input_stream);
+                    }
+                    catch (ParserException &e) {
+                        std::cout << e.what();
+                    }
+
+                }
+                else
+                    std::cout << "Comando Non trovato\n\n";
+
+
                 return false;
             }
             else
@@ -52,10 +71,11 @@ class Parser {
 
             commandMap["help"] = [this](std::stringstream &args) {
 
-                std::cout << "quit" << "\n";
+                std::cout << "List of Commands:\n\n";
+                std::cout << "* quit" << "\n";
 
                 for (const auto& [key, value] : this->commandMap) {
-                    std::cout << key << "\n";
+                    std::cout << "* " << key << "\n";
                 }
             };
 
