@@ -47,7 +47,7 @@ class Parser {
 
                 }
                 else
-                    std::cout << "Comando Non trovato\n\n";
+                    std::cout << "Command Not Found\n\n";
 
 
                 return false;
