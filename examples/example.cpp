@@ -20,7 +20,7 @@ class Player {
         Player(int totalPoints) : points(totalPoints) {}
 
         void removePoints(int p) {
-            if (p > 0)
+            if (p >= 0)
                 points = points - p;
             else
                 throw PlayerException("Cant Remove Negative Points");
