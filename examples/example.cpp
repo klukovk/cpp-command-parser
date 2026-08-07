@@ -77,6 +77,9 @@ class GameParser : public Parser<Player> {
             );
         }
 
+
+        ~GameParser() {};
+
 };
 
 

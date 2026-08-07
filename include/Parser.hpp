@@ -24,6 +24,8 @@ class Parser {
             loadBasicCommands();
         }
 
+        ~Parser() {}
+
 
         bool parseAndExecute(std::stringstream &input_stream) {
 

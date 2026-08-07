@@ -1,2 +1,2 @@
 #!/bin/bash
-g++ examples/*.cpp -I include -o app && ./app
+g++ -Wall -Wextra -fsanitize=address,undefined examples/*.cpp -I include -o app && ./app
