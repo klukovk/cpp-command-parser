@@ -2,6 +2,7 @@
 
 #include "Parser.hpp"
 #include <sstream>
+#include <string>
 
 using namespace std;
 
@@ -13,7 +14,7 @@ void test_method_non_exist() {
     GenericClass gc;
     Parser<GenericClass> parser(&gc);
 
-    CommandName command = "Non-Existing Command";
+    std::string command = "Non-Existing Command";
 
     stringstream nonExistingCommand = stringstream(command);
 
