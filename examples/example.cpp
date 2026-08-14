@@ -38,42 +38,50 @@ class GameParser : public Parser<Player> {
         GameParser(Player * p) : Parser<Player>(p) {
             addCommand(
                 "removePoints",
-                [this](stringstream &args) {
-                    int totalPoints;
-                    string token;
+                CommandInfo{
+                    .description = "Removes Player Points.",
+                    .flagsMap = {},
+                    .func = [this](stringstream &args) {
+                        int totalPoints;
+                        string token;
 
-                    if (args >> token) {
-                        try {
-                            totalPoints = stoi(token);
-                            this->getTarget()->removePoints(totalPoints);
+                        if (args >> token) {
+                            try {
+                                totalPoints = stoi(token);
+                                this->getTarget()->removePoints(totalPoints);
+                            }
+                            catch (invalid_argument &e) {
+                                throw ParserException("Specified Points not valid as Integer");
+                            }
+                            catch (PlayerException &e) {
+                                throw ParserException(e.what());
+                            }
                         }
-                        catch (invalid_argument &e) {
-                            throw ParserException("Specified Points not valid as Integer");
+                        else {
+                            this->getTarget()->removePoints(0);
                         }
-                        catch (PlayerException &e) {
-                            throw ParserException(e.what());
-                        }
+
 
                     }
-                    else {
-                        this->getTarget()->removePoints(0);
-                    }
-
-
 
 
                 }
+
+
 
             );
 
             addCommand(
                 "showPoints",
-                [this](stringstream &args) {
-                    cout << "\n";
-                    cout << "Points: " << this->getTarget()->getPoints();
-                    cout << "\n";
+                CommandInfo{
+                    .description = "Shows Player Points.",
+                    .flagsMap = {},
+                    .func = [this](stringstream &args) {
+                        cout << "\n";
+                        cout << "Points: " << this->getTarget()->getPoints();
+                        cout << "\n";
+                    }
                 }
-
             );
         }
 
