@@ -58,7 +58,7 @@ class Parser {
                 if (dict_it != commandMap.end())
                 {
                     try {
-                        dict_it->second(input_stream);
+                        dict_it->second.func(input_stream);
                     }
                     catch (ParserException &e) {
                         std::cout << e.what();
@@ -91,13 +91,13 @@ class Parser {
             commandMap["help"] = CommandInfo{
                 .description = "Shows Other Aviable Commands.",
                 .flagsMap = {},
-                .funct = [this](std::stringstream &args) {
+                .func = [this](std::stringstream &args) {
 
                     std::cout << "List of Commands:\n\n";
-                    std::cout << "* quit" << "\n";
+                    std::cout << "* quit" << "\n\t\t" << "DESC: Quit Program" << "\n";
 
                     for (const auto& [key, value] : this->commandMap) {
-                        std::cout << "* " << key << "\t" << value.description << "\n";
+                        std::cout << "* " << key << "\n\t\t" << "DESC: " << value.description << "\n";
                     }
 
                 }
