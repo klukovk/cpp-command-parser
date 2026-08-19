@@ -93,12 +93,19 @@ class Parser {
                 .flagsMap = {},
                 .func = [this](std::stringstream &args) {
 
-                    std::cout << "List of Commands:\n\n";
-                    std::cout << "* quit" << "\n\t\t" << "DESC: Quit Program" << "\n";
+                    std::string token;
 
-                    for (const auto& [key, value] : this->commandMap) {
-                        std::cout << "* " << key << "\n\t\t" << "DESC: " << value.description << "\n";
+                    if (!(args >> token)) {
+                        std::cout << "List of Commands:\n\n";
+                        std::cout << "* quit" << "\n\t\t" << "DESC: Quit Program" << "\n";
+
+                        for (const auto& [key, value] : this->commandMap) {
+                            std::cout << "* " << key << "\n\t\t" << "DESC: " << value.description << "\n";
+                        }
                     }
+                    else
+                        throw ParserException("Unrequired Arguments for help");
+
 
                 }
             };

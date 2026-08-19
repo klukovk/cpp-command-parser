@@ -77,9 +77,16 @@ class GameParser : public Parser<Player> {
                     .description = "Shows Player Points.",
                     .flagsMap = {},
                     .func = [this](stringstream &args) {
-                        cout << "\n";
-                        cout << "Points: " << this->getTarget()->getPoints();
-                        cout << "\n";
+                        std::string token;
+                        if (!(args >> token))
+                        {
+                            cout << "\n";
+                            cout << "Points: " << this->getTarget()->getPoints();
+                            cout << "\n";
+                        }
+                        else {
+                            throw ParserException("UnRequired Arguments in showPoints: " + token);
+                        }
                     }
                 }
             );
