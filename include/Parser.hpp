@@ -61,12 +61,12 @@ class Parser {
                         dict_it->second.func(input_stream);
                     }
                     catch (ParserException &e) {
-                        std::cout << e.what();
+                        std::cerr << e.what();
                     }
 
                 }
                 else
-                    std::cout << "Command Not Found\n\n";
+                    std::cerr << "Command Not Found\n\n";
 
 
                 return false;
