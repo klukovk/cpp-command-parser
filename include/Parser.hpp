@@ -22,12 +22,17 @@ class Parser {
 
     protected:
 
+        // Command is just a string
         using CommandName = std::string;
 
+        // Custom commands are methods
         using CommandMethod = std::function<void(std::stringstream& args)>;
+
+        // Flags
         using FlagName = std::string;
         using FlagDescription = std::string;
 
+        // Contains method + his description + flags
         struct CommandInfo{
             std::string description;
             std::unordered_map<FlagName, FlagDescription> flagsMap;
@@ -43,7 +48,11 @@ class Parser {
 
         ~Parser() {}
 
-
+        /**
+         * Parse a stringstream.
+         * The fist word must be the command name, followed by [flag argument]
+         * Returns true if wanting to quit the program
+         */
         bool parseAndExecute(std::stringstream &input_stream) {
 
             CommandName command;
@@ -61,7 +70,7 @@ class Parser {
                         dict_it->second.func(input_stream);
                     }
                     catch (ParserException &e) {
-                        std::cerr << e.what();
+                        std::cerr << "Error" << e.what() << "\n\n";
                     }
 
                 }
@@ -86,6 +95,10 @@ class Parser {
         }
 
     private:
+
+        /**
+         * Loads help command
+         */
         void loadBasicCommands() {
 
             commandMap["help"] = CommandInfo{
