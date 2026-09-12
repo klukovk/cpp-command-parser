@@ -19,6 +19,8 @@ void test_method_non_exist() {
     stringstream nonExistingCommand = stringstream(command);
 
     cout << "Executing : " << command;
+
+    // Here must throw error
     parser.parseAndExecute(nonExistingCommand);
 }
 

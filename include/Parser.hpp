@@ -46,7 +46,7 @@ class Parser {
             loadBasicCommands();
         }
 
-        ~Parser() {}
+        virtual ~Parser() {}
 
         /**
          * Parse a stringstream.
