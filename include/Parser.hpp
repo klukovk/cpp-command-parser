@@ -90,7 +90,7 @@ class Parser {
             commandMap.insert({name, func});
         }
 
-        T * getTarget() {
+        T * getTarget() const {
             return target;
         }
 
