@@ -1,8 +1,10 @@
 # cpp-command-parser
 1. [In General](#in-general)
-2. [How it works](#usage)
+2. [How it works](#how-it-works)
 3. [Usage](#usage)
 4. [Final Notes](#final-notes)
+5. [Attribution](#attribution)
+
 
 
 
@@ -118,3 +120,6 @@ Keep in mind that `parseAndExecute == true` <=> the command was `quit`
 This project was created to provide a simple yet useful CLI parser, avoiding complex and hard-to-read boilerplate code. 
 I tried to keep the architecture as straightforward as possible. 
 I would highly appreciate any issue tickets or reports regarding code bugs, missing features, or documentation improvements!
+
+## Attribution
+If you use this library in your own project, a link back to this repository or a mention in your project's credits is greatly appreciated!
