@@ -23,7 +23,7 @@ class Player {
             if (p >= 0)
                 points = points - p;
             else
-                throw PlayerException("Cant Remove Negative Points");
+                throw PlayerException("Cannot remove negative points");
         }
 
         int getPoints() {
@@ -85,7 +85,7 @@ class GameParser : public Parser<Player> {
                             cout << "\n";
                         }
                         else {
-                            throw ParserException("UnRequired Arguments in showPoints: " + token);
+                            throw ParserException("Unexpected arguments in showPoints: " + token);
                         }
                     }
                 }

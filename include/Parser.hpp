@@ -89,7 +89,7 @@ class Parser {
         void loadBasicCommands() {
 
             commandMap["help"] = CommandInfo{
-                .description = "Shows Other Aviable Commands.",
+                .description = "Shows other available commands.",
                 .flagsMap = {},
                 .func = [this](std::stringstream &args) {
 
@@ -104,7 +104,7 @@ class Parser {
                         }
                     }
                     else
-                        throw ParserException("Unrequired Arguments for help");
+                        throw ParserException("Extra arguments not allowed for help");
 
 
                 }
