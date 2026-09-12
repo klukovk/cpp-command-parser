@@ -29,7 +29,7 @@ class Player {
                 throw PlayerException("Cannot remove negative points");
         }
 
-        int getPoints() {
+        int getPoints() const {
             return points;
         }
 };
