@@ -12,6 +12,9 @@ class PlayerException : public std::runtime_error {
         PlayerException(const std::string &msg) : std::runtime_error(msg) {}
 };
 
+/**
+ * Custom Class to target by the parser
+ */
 class Player {
     private:
         int points;
@@ -100,15 +103,18 @@ class GameParser : public Parser<Player> {
 
 int main() {
     Player p(40);
-    GameParser gp(&p);
+
+
+    GameParser gp(&p);  // OR just do Parser<Player> and add custom commands laters
     string input;
     stringstream input_stream;
     bool quit;
 
+    // Loop requiring input and using the Parser
+    // (in alternative, create a GameParser::start() that uses this loop)
     do {
         cout << "\nInput: \n";
 
-        // Leggi Intero Nome digitato
         getline(cin, input);
 
         input_stream = stringstream(input);
