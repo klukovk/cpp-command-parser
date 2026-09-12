@@ -118,7 +118,7 @@ Keep in mind that `parseAndExecute == true` <=> the command was `quit`
 
 ## Final Notes
 This project was created to provide a simple yet useful CLI parser, avoiding complex and hard-to-read boilerplate code. 
-I tried to keep the architecture as straightforward as possible. 
+I don't expect it to be perfect, as it was born to support another project i've been working on, but i tried to keep the architecture as straightforward as possible and use clean code.
 I would highly appreciate any issue tickets or reports regarding code bugs, missing features, or documentation improvements!
 
 ## Attribution
